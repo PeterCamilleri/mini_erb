@@ -10,6 +10,15 @@ class MiniErbTest < Minitest::Test
 
   def test_that_it_has_a_version_number
     refute_nil ::MiniErb::VERSION
+    assert(::MiniErb::VERSION.frozen?)
+    assert(::MiniErb::VERSION.is_a?(String))
+    assert(/\A\d+\.\d+\.\d+/ =~ ::MiniErb::VERSION)
+  end
+
+  def test_that_it_has_a_description
+    refute_nil ::MiniErb::DESCRIPTION
+    assert(::MiniErb::DESCRIPTION.frozen?)
+    assert(::MiniErb::DESCRIPTION.is_a?(String))
   end
 
 end

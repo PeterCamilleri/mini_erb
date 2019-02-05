@@ -8,3 +8,9 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task :default => :test
+
+desc "What version of mini_erb is this?"
+task :vers do |t|
+  puts
+  puts "mini_erb version = #{::MiniErb::VERSION}"
+end
