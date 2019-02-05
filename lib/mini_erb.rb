@@ -1,6 +1,8 @@
-require "mini_erb/version"
+require_relative "mini_erb/version"
 
+# A simplified, streamlined erb replacement.
 module MiniErb
-  class Error < StandardError; end
+
   # Your code goes here...
+
 end
