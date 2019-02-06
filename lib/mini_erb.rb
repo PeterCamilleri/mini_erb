@@ -14,18 +14,23 @@ class MiniErb
 
   # Compile the mini erb input
   def compile(string)
-    buffer = []
+    buffer, suppress = [], false
 
     until string.empty?
       text, code, string = string.partition(/<%.*?%>/m)
 
+      text.sub!(/\A$\r?\n?/, "") if suppress
+      suppress = false
+
       buffer << "#{@eoutvar}<<#{text.inspect};" unless text.empty?
 
       unless code.empty?
+        end_point = (suppress = code[-3] == "-") ? -3 : -2
+
         if code[2] == "="
-          buffer << "#{@eoutvar}<<(#{code[3...-2]}).to_s;"
+          buffer << "#{@eoutvar}<<(#{code[3...end_point]}).to_s;"
         else
-          buffer << "#{code[2...-2]};"
+          buffer << "#{code[2...end_point]};"
         end
       end
     end
