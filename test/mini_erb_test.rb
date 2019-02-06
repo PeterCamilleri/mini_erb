@@ -34,10 +34,18 @@ class MiniErbTest < Minitest::Test
     result = ""
     assert_equal(result, MiniErb.new("").result($test_binding))
 
-
     assert_equal(String, MiniErb.new("Test 1 2 3").src.class)
     src = "_erbout='';_erbout<<\"Test 1 2 3\";_erbout"
     assert_equal(src, MiniErb.new("Test 1 2 3").src)
+    result = "Test 1 2 3"
+    assert_equal(result, MiniErb.new("Test 1 2 3").result($test_binding))
+
+    input = "LtU&E = <%= a %>"
+    src = "_erbout='';_erbout<<\"LtU&E = \";_erbout<<( a ).to_s;_erbout"
+    assert_equal(src, MiniErb.new(input).src)
+    result = "LtU&E = 42"
+    assert_equal(result, MiniErb.new(input).result($test_binding))
+
   end
 
 

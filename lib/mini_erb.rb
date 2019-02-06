@@ -23,9 +23,9 @@ class MiniErb
 
       unless code.empty?
         if code[2] == "="
-          buffer << "#{code[3...-2]};"
+          buffer << "#{@eoutvar}<<(#{code[3...-2]}).to_s;"
         else
-          buffer << "#{@eoutvar}<<(#{code[2...-2]}).to_s;"
+          buffer << "#{code[2...-2]};"
         end
       end
     end
