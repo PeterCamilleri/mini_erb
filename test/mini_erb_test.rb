@@ -21,4 +21,8 @@ class MiniErbTest < Minitest::Test
     assert(::MiniErb::DESCRIPTION.is_a?(String))
   end
 
+  def test_the_essentials
+    assert_equal(MiniErb, MiniErb.new("Test 1 2 3").class)
+
+  end
 end
