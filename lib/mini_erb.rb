@@ -33,9 +33,14 @@ class MiniErb
     @eoutvar + "='';" + buffer.join + @eoutvar
   end
 
-  # Return the results with embedded Ruby results.
+  # Return the mini erb text with embedded Ruby results.
   def result(evaluator)
     evaluator.eval(@src)
+  end
+
+  # Generate results and print them.
+  def run(evaluator)
+    print result(evaluator)
   end
 
 end
