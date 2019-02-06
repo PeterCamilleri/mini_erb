@@ -31,9 +31,14 @@ class MiniErbTest < Minitest::Test
     assert_equal(String, MiniErb.new("").src.class)
     src = "_erbout='';_erbout"
     assert_equal(src, MiniErb.new("").src)
+    result = ""
+    assert_equal(result, MiniErb.new("").result($test_binding))
+
 
     assert_equal(String, MiniErb.new("Test 1 2 3").src.class)
     src = "_erbout='';_erbout<<\"Test 1 2 3\";_erbout"
     assert_equal(src, MiniErb.new("Test 1 2 3").src)
   end
+
+
 end

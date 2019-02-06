@@ -33,4 +33,9 @@ class MiniErb
     @eoutvar + "='';" + buffer.join + @eoutvar
   end
 
+  # Return the results with embedded Ruby results.
+  def result(evaluator)
+    evaluator.eval(@src)
+  end
+
 end
