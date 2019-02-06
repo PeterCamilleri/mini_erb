@@ -7,13 +7,30 @@ class MiniErb
   attr_reader :src
 
   # Create a mini_erb object
-  def initialize(str, safe_level=nil, _=nil, eoutvar='_erbout')
+  def initialize(string, safe_level=nil, _=nil, eoutvar='_erbout')
     @safe_level, @eoutvar = safe_level, eoutvar
-    @source = compile(str)
+    @src = compile(string)
   end
 
   # Compile the mini erb input
-  def compile(str)
+  def compile(string)
+    buffer = []
+
+    until string.empty?
+      text, code, string = string.partition(/<%.*?%>/m)
+
+      buffer << "#{@eoutvar}<<#{text.inspect};" unless text.empty?
+
+      unless code.empty?
+        if code[2] == "="
+          buffer << "#{code[3...-2]};"
+        else
+          buffer << "#{@eoutvar}<<(#{code[2...-2]}).to_s;"
+        end
+      end
+    end
+
+    @eoutvar + "='';" + buffer.join + @eoutvar
   end
 
 end
