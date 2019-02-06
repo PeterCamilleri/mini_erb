@@ -27,10 +27,13 @@ class MiniErbTest < Minitest::Test
 
   def test_the_essentials
     assert_equal(MiniErb, MiniErb.new("Test 1 2 3").class)
+
     assert_equal(String, MiniErb.new("").src.class)
-    assert_equal("_erbout='';_erbout", MiniErb.new("").src)
+    src = "_erbout='';_erbout"
+    assert_equal(src, MiniErb.new("").src)
 
     assert_equal(String, MiniErb.new("Test 1 2 3").src.class)
-    assert_equal("_erbout='';_erbout<<\"Test 1 2 3\";_erbout", MiniErb.new("Test 1 2 3").src)
+    src = "_erbout='';_erbout<<\"Test 1 2 3\";_erbout"
+    assert_equal(src, MiniErb.new("Test 1 2 3").src)
   end
 end
