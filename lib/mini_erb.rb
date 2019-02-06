@@ -1,7 +1,7 @@
 require_relative "mini_erb/version"
 
 # A simplified, streamlined erb replacement.
-module MiniErb
+class MiniErb
 
   # Your code goes here...
 
