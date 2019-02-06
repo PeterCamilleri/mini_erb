@@ -39,13 +39,23 @@ class MiniErb
   end
 
   # Return the mini erb text with embedded Ruby results.
-  def result(evaluator)
-    evaluator.eval(@src)
+  def result(evaluator = new_toplevel)
+    if @safe_level
+      proc {$SAFE = @safe_level; evaluator.eval(@src)}.call
+    else
+      evaluator.eval(@src)
+    end
   end
 
   # Generate results and print them.
-  def run(evaluator)
+  def run(evaluator = new_toplevel)
     print result(evaluator)
   end
 
+private
+
+  # Get a duplicate of the default binding if none is specified.
+  def new_toplevel
+    TOPLEVEL_BINDING.dup
+  end
 end
