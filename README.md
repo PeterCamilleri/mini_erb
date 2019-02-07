@@ -19,8 +19,8 @@ The following lays out the differences:
 * The suppression of new lines with a tag ending in -&#37;> is active by default.
 * The use of code lines starting with a % sign is not supported. Instead use
 <%  ... %> embedded code blocks.
-* In erb, <%% maps to <%. In mini_erb use <\&#37;% instead. The same goes for
-%%> which is replaced by %\&#37;>.
+* In erb, <%% maps to <%. In mini_erb use <\&#37; instead. The same goes for
+%%> which is replaced by \&#37;>.
 
 
 
