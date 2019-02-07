@@ -4,8 +4,8 @@ The mini_erb gem is another spin off from the mysh project. In testing the
 handlebars embedded Ruby system used there, it was observed that the test
 code was faster than both the native erb and the faster erubi.
 
-The mini_erb gem returns to the syntax of erb based on the same algorithm of
-the mysh handlebars.
+The mini_erb gem returns to the syntax of erb but is based on the same
+algorithm of the mysh handlebars.
 
 In performance it is still faster. This is laid out in this
 [report](https://github.com/PeterCamilleri/mini_erb/blob/master/docs/embbed_ruby_study.pdf)
@@ -16,7 +16,7 @@ In performance it is still faster. This is laid out in this
 The use of erb to embed ruby code into text or html is widely covered, so only
 a brief summary of this topic is presented here.
 
-1. Embedding ruby computed values into the text.
+1. **Embedding ruby computed values into the text.**
 
 The following embeds the results of the execution of the ruby into the results.
 
@@ -30,7 +30,7 @@ produces
 
     ABCD123456789EFGH
 
-2. Using ruby to control the generated text.
+2. **Using ruby to control the generated text.**
 
 You can also use ruby to control what text or html is included in the output.
 This allows the ruby code to select which text/html is included and even to
