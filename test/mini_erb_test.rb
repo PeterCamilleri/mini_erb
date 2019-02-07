@@ -58,6 +58,11 @@ class MiniErbTest < Minitest::Test
     result = "LtU&E = 42"
     assert_equal(result, MiniErb.new(input).result($test_binding))
 
+    input = "Test<%# Some debug code %> 1 2 3"
+    src = "_erbout='';_erbout<<\"Test\";_erbout<<\" 1 2 3\";_erbout"
+    assert_equal(src, MiniErb.new(input).src)
+    result = "Test 1 2 3"
+    assert_equal(result, MiniErb.new(input).result($test_binding))
   end
 
 
