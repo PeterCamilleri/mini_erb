@@ -4,6 +4,8 @@ require_relative "../lib/mini_erb"
 x     = 42
 $env  = binding
 
+puts "The mini_erb examples in the readme file, confirmed here.", ""
+
 str = "ABCD<%= (1..9).to_a.join %>EFGH"
 puts str, MiniErb.new(str).result($env), ""
 
