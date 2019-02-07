@@ -11,9 +11,58 @@ In performance it is still faster. This is laid out in this
 [report](https://github.com/PeterCamilleri/mini_erb/blob/master/docs/embbed_ruby_study.pdf)
 .
 
-#### Differences from erb.
+#### Embedding Ruby into text or html
 
-For reasons of speed, mini_erb supports a subset of the functionality of erb.
+The use of erb to embed ruby code into text or html is widely covered, so only
+a brief summary of this topic is presented here.
+
+1. Embedding ruby computed values into the text.
+
+The following embeds the results of the execution of the ruby into the results.
+
+```ruby
+$env  = binding
+
+str = "ABCD<%= (1..9).to_a.join %>EFGH"
+puts str, MiniErb.new(str).result($env)
+```
+produces
+
+    ABCD123456789EFGH
+
+2. Using ruby to control the generated text.
+
+You can also use ruby to control what text or html is included in the output.
+This allows the ruby code to select which text/html is included and even to
+repeat sections.
+
+```ruby
+x     = 42
+$env  = binding
+
+str = "<% if x==42 %>Life, the Universe and Everything<% else %>Some stuff<% end %>"
+puts MiniErb.new(str).result($env)
+```
+produces
+
+    Life, the Universe and Everything
+
+and
+
+```ruby
+$env  = binding
+
+str = "<% 5.times { |i| %> <%= i+1 %> sheep <% } %>"
+puts MiniErb.new(str).result($env)
+```
+produces
+
+     1 sheep  2 sheep  3 sheep  4 sheep  5 sheep
+
+
+#### Differences from traditional erb.
+
+The mini_erb gem supports a subset of the functionality of erb.
 The following lays out the differences:
 
 * The suppression of new lines with a tag ending in -&#37;> is active by default.
