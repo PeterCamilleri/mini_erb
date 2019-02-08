@@ -21,10 +21,10 @@ a brief summary of this topic is presented here.
 The following embeds the results of the execution of the ruby into the results.
 
 ```ruby
-$env  = binding
+env  = binding
 
 str = "ABCD<%= (1..9).to_a.join %>EFGH"
-puts MiniErb.new(str).result($env)
+puts MiniErb.new(str).result(env)
 ```
 produces
 
@@ -38,10 +38,10 @@ repeat sections.
 
 ```ruby
 x     = 42
-$env  = binding
+env  = binding
 
 str = "<% if x==42 %>Life, the Universe and Everything<% else %>Some stuff<% end %>"
-puts MiniErb.new(str).result($env)
+puts MiniErb.new(str).result(env)
 ```
 produces
 
@@ -50,10 +50,10 @@ produces
 and
 
 ```ruby
-$env  = binding
+env  = binding
 
 str = "<% 5.times { |i| %> <%= i+1 %> sheep <% } %>"
-puts MiniErb.new(str).result($env)
+puts MiniErb.new(str).result(env)
 ```
 produces
 
@@ -67,10 +67,10 @@ may not wish to simply delete it. The following example shows some "debug"
 code.
 
 ```ruby
-$env  = binding
+env  = binding
 
 str = "Now is the hour of our discontent! <%= "Answer=42" %>"
-puts MiniErb.new(str).result($env)
+puts MiniErb.new(str).result(env)
 ```
 produces
 
@@ -78,10 +78,10 @@ produces
 
 In production use, we can turn off that code with:
 ```ruby
-$env  = binding
+env  = binding
 
 str = "Now is the hour of our discontent! <%#= "Answer=42" %>"
-puts MiniErb.new(str).result($env)
+puts MiniErb.new(str).result(env)
 ```
 and now we get this clean output
 
@@ -94,14 +94,14 @@ new-lines to make the code easier to read and understand. These extra lines
 may not be desirable in the output. These can be controlled as follows:
 
 ```ruby
-$env  = binding
+env  = binding
 
 str = <<-end_of_string
 ABCD<%= (1..9).to_a.join -%>
 EFGH
 end_of_string
 
-puts MiniErb.new(str).result($env)
+puts MiniErb.new(str).result(env)
 ```
 produces
 
