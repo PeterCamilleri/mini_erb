@@ -1,8 +1,8 @@
 
 require_relative "../lib/mini_erb"
 
-x     = 42
-env  = binding
+x   = 42
+env = binding
 
 puts "The mini_erb examples in the readme file, confirmed here.", ""
 
