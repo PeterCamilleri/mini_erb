@@ -2,55 +2,54 @@ C:\Sites\mini_erb
 mysh>ruby --version
 ruby 2.3.3p222 (2016-11-21 revision 56859) [i386-mingw32]
 
-C:\Sites\mini_erb
 mysh>ruby docs\bench.rb
 Lines = 1
 
 Warming up --------------------------------------
-                 erb     1.341k i/100ms
-               erubi     1.803k i/100ms
-            mini_erb     2.393k i/100ms
+                 erb     1.339k i/100ms
+               erubi     1.835k i/100ms
+            mini_erb     2.457k i/100ms
 Calculating -------------------------------------
-                 erb     14.007k (± 0.7%) i/s -     71.073k in   5.074290s
-               erubi     19.405k (± 0.5%) i/s -     97.362k in   5.017483s
-            mini_erb     26.660k (± 0.5%) i/s -    134.008k in   5.026645s
+                 erb     13.983k (± 0.7%) i/s -     70.967k in   5.075390s
+               erubi     19.600k (± 0.5%) i/s -     99.090k in   5.055757s
+            mini_erb     27.214k (± 0.4%) i/s -    137.592k in   5.056061s
 
 Comparison:
-            mini_erb:    26660.1 i/s
-               erubi:    19405.1 i/s - 1.37x  slower
-                 erb:    14007.1 i/s - 1.90x  slower
+            mini_erb:    27213.6 i/s
+               erubi:    19600.0 i/s - 1.39x  slower
+                 erb:    13983.3 i/s - 1.95x  slower
 
 Lines = 10
 
 Warming up --------------------------------------
-                 erb   373.000  i/100ms
-               erubi   507.000  i/100ms
-            mini_erb   645.000  i/100ms
+                 erb   377.000  i/100ms
+               erubi   511.000  i/100ms
+            mini_erb   652.000  i/100ms
 Calculating -------------------------------------
-                 erb      3.800k (± 0.4%) i/s -     19.023k in   5.006461s
-               erubi      5.180k (± 0.8%) i/s -     26.364k in   5.089669s
-            mini_erb      6.707k (± 0.6%) i/s -     33.540k in   5.000837s
+                 erb      3.835k (± 0.3%) i/s -     19.227k in   5.013866s
+               erubi      5.223k (± 0.4%) i/s -     26.572k in   5.087745s
+            mini_erb      6.703k (± 0.3%) i/s -     33.904k in   5.058217s
 
 Comparison:
-            mini_erb:     6707.1 i/s
-               erubi:     5180.2 i/s - 1.29x  slower
-                 erb:     3799.8 i/s - 1.77x  slower
+            mini_erb:     6702.8 i/s
+               erubi:     5222.8 i/s - 1.28x  slower
+                 erb:     3834.8 i/s - 1.75x  slower
 
 Lines = 100
 
 Warming up --------------------------------------
-                 erb    46.000  i/100ms
+                 erb    47.000  i/100ms
                erubi    62.000  i/100ms
             mini_erb    80.000  i/100ms
 Calculating -------------------------------------
-                 erb    466.746  (± 0.6%) i/s -      2.346k in   5.026494s
-               erubi    627.811  (± 0.5%) i/s -      3.162k in   5.036641s
-            mini_erb    808.070  (± 0.5%) i/s -      4.080k in   5.049199s
+                 erb    470.835  (± 3.0%) i/s -      2.397k in   5.096086s
+               erubi    627.519  (± 0.3%) i/s -      3.162k in   5.038955s
+            mini_erb    807.869  (± 0.2%) i/s -      4.080k in   5.050370s
 
 Comparison:
-            mini_erb:      808.1 i/s
-               erubi:      627.8 i/s - 1.29x  slower
-                 erb:      466.7 i/s - 1.73x  slower
+            mini_erb:      807.9 i/s
+               erubi:      627.5 i/s - 1.29x  slower
+                 erb:      470.8 i/s - 1.72x  slower
 
 Lines = 1000
 
@@ -59,14 +58,14 @@ Warming up --------------------------------------
                erubi     4.000  i/100ms
             mini_erb     8.000  i/100ms
 Calculating -------------------------------------
-                 erb     47.294  (± 0.0%) i/s -    240.000  in   5.074804s
-               erubi     48.799  (± 0.0%) i/s -    244.000  in   5.000236s
-            mini_erb     83.125  (± 0.0%) i/s -    416.000  in   5.004637s
+                 erb     48.138  (± 0.0%) i/s -    244.000  in   5.068916s
+               erubi     49.281  (± 0.0%) i/s -    248.000  in   5.032499s
+            mini_erb     83.823  (± 0.0%) i/s -    424.000  in   5.058344s
 
 Comparison:
-            mini_erb:       83.1 i/s
-               erubi:       48.8 i/s - 1.70x  slower
-                 erb:       47.3 i/s - 1.76x  slower
+            mini_erb:       83.8 i/s
+               erubi:       49.3 i/s - 1.70x  slower
+                 erb:       48.1 i/s - 1.74x  slower
 
 Lines = 10000
 
@@ -75,28 +74,28 @@ Warming up --------------------------------------
                erubi     1.000  i/100ms
             mini_erb     1.000  i/100ms
 Calculating -------------------------------------
-                 erb      4.496  (± 0.0%) i/s -     23.000  in   5.117559s
-               erubi      1.470  (± 0.0%) i/s -      8.000  in   5.443910s
-            mini_erb      7.604  (± 0.0%) i/s -     38.000  in   5.005925s
+                 erb      4.582  (± 0.0%) i/s -     23.000  in   5.023199s
+               erubi      1.483  (± 0.0%) i/s -      8.000  in   5.395116s
+            mini_erb      7.411  (± 0.0%) i/s -     37.000  in   5.007552s
 
 Comparison:
-            mini_erb:        7.6 i/s
-                 erb:        4.5 i/s - 1.69x  slower
-               erubi:        1.5 i/s - 5.17x  slower
+            mini_erb:        7.4 i/s
+                 erb:        4.6 i/s - 1.62x  slower
+               erubi:        1.5 i/s - 5.00x  slower
 
 erb
-1.9033257552613354
-1.7651298044185955
-1.7312824355605723
-1.757603720008082
-1.6910811019374226
+1.9461584728920918
+1.7478983166130262
+1.7158220177386765
+1.7413148808476089
+1.617598249387611
 
 erubi
-1.3738709047645485
-1.2947478098198328
-1.2871216294660908
-1.7034184929099723
-5.17347493549732
+1.3884525838177595
+1.283371981799579
+1.287402518421726
+1.7009426057454513
+4.997561412566967
 
 mini_erb
 1.0
