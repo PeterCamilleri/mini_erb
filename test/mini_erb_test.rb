@@ -27,6 +27,8 @@ class MiniErbTest < Minitest::Test
 
   def test_the_essentials
     assert_equal(MiniErb, MiniErb.new("Test 1 2 3").class)
+    assert_equal("(mini_erb)", MiniErb.new("Test 1 2 3").filename)
+    assert_equal(0, MiniErb.new("Test 1 2 3").lineno)
 
     assert_equal(String, MiniErb.new("").src.class)
     src = "_erbout='';_erbout"
