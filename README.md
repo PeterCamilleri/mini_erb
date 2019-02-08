@@ -24,7 +24,7 @@ The following embeds the results of the execution of the ruby into the results.
 $env  = binding
 
 str = "ABCD<%= (1..9).to_a.join %>EFGH"
-puts str, MiniErb.new(str).result($env)
+puts MiniErb.new(str).result($env)
 ```
 produces
 
