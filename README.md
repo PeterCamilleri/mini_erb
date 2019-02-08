@@ -11,7 +11,7 @@ In performance it is still faster. This is laid out in this
 [report](https://github.com/PeterCamilleri/mini_erb/blob/master/docs/embbed_ruby_study.pdf)
 .
 
-#### Embedding Ruby into text or html
+### Embedding Ruby into text or html
 
 The use of erb to embed ruby code into text or html is widely covered, so only
 a brief summary of this topic is presented here.
@@ -59,8 +59,58 @@ produces
 
      1 sheep  2 sheep  3 sheep  4 sheep  5 sheep
 
+3. **Control of debug code.**
 
-#### Differences from traditional erb.
+Sometimes, there is a need to add code for debug or testing purposes. In
+production, we do not want this code interfering with normal operation but we
+may not wish to simply delete it. The following example shows some "debug"
+code.
+
+```ruby
+$env  = binding
+
+str = "Now is the hour of our discontent! <%= "Answer=42" %>"
+puts MiniErb.new(str).result($env)
+```
+produces
+
+    Now is the hour of our discontent! Answer=42
+
+In production use, we can turn off that code with:
+```ruby
+$env  = binding
+
+str = "Now is the hour of our discontent! <%#= "Answer=42" %>"
+puts MiniErb.new(str).result($env)
+```
+and now we get this clean output
+
+    Now is the hour of our discontent!
+
+4. **Removal of unwanted new-lines**
+
+Sometimes in formatting the embedded ruby code, it is desired to add extra
+new-lines to make the code easier to read and understand. These extra lines
+may not be desirable in the output. These can be controlled as follows:
+
+```ruby
+$env  = binding
+
+str = <<-end_of_string
+ABCD<%= (1..9).to_a.join -%>
+EFGH
+end_of_string
+
+puts MiniErb.new(str).result($env)
+```
+produces
+
+    ABCD123456789EFGH
+
+Note how the output does not contain the spurious new line between the
+"9" and "E" characters.
+
+### Differences from traditional erb.
 
 The mini_erb gem supports a subset of the functionality of erb.
 The following lays out the differences:
