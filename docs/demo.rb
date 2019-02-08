@@ -26,3 +26,6 @@ ABCD<%= (1..9).to_a.join -%>
 EFGH
 end_of_string
 puts str, MiniErb.new(str).result(env), ""
+
+str = "x is now <%=x%>.<%x+=1%> x is now <%=x%>."
+puts str, MiniErb.new(str).result(binding), x, ""

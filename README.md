@@ -121,8 +121,6 @@ The following lays out the differences:
 * In erb, <%% maps to <%. In mini_erb use <\&#37; instead. The same goes for
 %%> which is replaced by \&#37;>.
 
-
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -141,7 +139,94 @@ Or install it yourself as:
 
 ## Usage
 
-WIP
+The use of the mini_erb gem comes in two distinct phases.
+
+1. Creating a mini_erb object. This object contains the source input transpiled
+into ruby code.
+2. Executing the transpiled code in an execution environment.
+
+### Phase 1
+
+Creating a mini_erb object is done simply with the standard new method. The
+corresponding initialize method is:
+
+```ruby
+def initialize(string, safe_level=nil, _=nil, eoutvar='_erbout')
+  @safe_level, @eoutvar = safe_level, eoutvar
+  @filename, @lineno = "(mini_erb)", 0
+  @src = compile(string)
+end
+```
+
+where:
+
+* *string* is a string containing the source text embedded with ruby code.
+* *safe_level* is an optional parameter controlling the level of distrust of the
+embedded ruby code. While outside the purview of this file, the following gives
+a nice summary of the available options:
+
+safe_level | constraints
+-----------|--------------
+0          | No checking of the use of externally supplied (tainted) data is performed. This is the default.
+≥ 1        | Ruby disallows the use of tainted data by potentially dangerous operations.
+≥ 2        | Ruby prohibits the loading of program files from globally writable locations.
+≥ 3        | All newly created objects are considered tainted and untrusted.
+≥ 4        | Ruby effectively partitions the running program in two. Nontrusted objects may not be modified.
+
+(Source: Programming Ruby by Dave Thomas with Chad Fowler and Andy Hunt)
+
+* *_* is an optional and unused parameter retained only for erb compatibility.
+* *eoutvar* is an optional parameter used to specify a different local variable
+name to contain the results of the embedding process.
+
+In many cases, only one parameter is required as in the many examples above.
+
+#### Adding location info.
+
+For purposes of debugging, it may be useful to tie the transpiled code to a
+file or line number. This information can be added to the mini_erb object as
+follows:
+
+```ruby
+file_name = "my_file.erb"
+erbed = MiniErb.new(IO.read(file_name))
+erbed.filename = file_name
+```
+This sets up the erb file and establishes its file name for debug purposes.
+
+#### The transpiled code.
+
+Optionally, the transpiled ruby code may be accessed using the *src* attribute.
+This is most often done to verify that the transpiler is operating correctly
+but is also useful to those who wish to gain insights into the operation of
+the mini_erb gem. It was this same access provided by the erb library that
+made this gem possible.
+
+### Phase 2
+
+The next step is to execute the transpiled code in an environment. This
+environment is a ruby binding to the virtual location of the code execution.
+In effect, code is executed from the place where the binding is taken.
+
+This use of bindings allows access to any variables that may have been defined
+in that a location and also allows the state of that location to be modified.
+For example:
+
+```ruby
+x = 42
+str = "x is now <%=x%>.<%x+=1%> x is now <%=x%>."
+puts MiniErb.new(str).result(binding), x
+```
+produces
+
+    x is now 42. x is now 43.
+    43
+
+Note how the environment was modified by adding one to x.
+
+If no binding is specified, the binding of the top level file of the current
+program is used as a default.
+
 
 ## Contributing
 
