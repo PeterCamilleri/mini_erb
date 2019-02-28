@@ -33,8 +33,6 @@ class MiniErb
       text, code, string = string.partition(/<%.*?%>/m)
 
       text.sub!(/\A$\r?\n?/, "") if suppress
-      suppress = false
-
       buffer << "#{@eoutvar}<<#{text.inspect};" unless text.empty?
 
       unless code.empty?
