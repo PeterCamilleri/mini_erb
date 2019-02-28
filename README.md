@@ -206,7 +206,8 @@ made this gem possible.
 
 The next step is to execute the transpiled code in an environment. This
 environment is a ruby binding to the virtual location of the code execution.
-In effect, code is executed from the place where the binding is taken.
+In effect, code is executed as if it was placed in the spot where the binding
+is taken.
 
 This use of bindings allows access to any variables that may have been defined
 in that a location and also allows the state of that location to be modified.
