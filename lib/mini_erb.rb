@@ -48,7 +48,7 @@ class MiniErb
       end
     end
 
-    @eoutvar + "='';" + buffer.join + @eoutvar
+    @eoutvar + "=String.new;" + buffer.join + @eoutvar
   end
 
   # Return the mini erb text with embedded Ruby results.
