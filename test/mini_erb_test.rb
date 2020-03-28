@@ -1,16 +1,15 @@
 require_relative '../lib/mini_erb'
 gem              'minitest'
 require          'minitest/autorun'
-require          'minitest_visible'
 
 class MiniErbTest < Minitest::Test
 
-  #Track mini-test progress.
-  include MinitestVisible
-
   a = 42
-  puts a
   $test_binding = binding
+
+  if a == 43  # Shut up stupid warnings.
+    puts "Too much"
+  end
 
   def test_that_it_has_a_version_number
     refute_nil ::MiniErb::VERSION
